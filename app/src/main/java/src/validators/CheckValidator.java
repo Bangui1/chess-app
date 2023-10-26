@@ -15,6 +15,8 @@ public class CheckValidator implements Validator{
         Board currentBoard = history.get(history.size() - 1);
         Map<Coordinate, Piece> currentPieces = currentBoard.getPieces();
         Piece pieceToMove = currentPieces.get(movement.getOrigin());
+
+
         Board nextBoard = currentBoard.movePiece(movement);
         Map<Coordinate, Piece> newPieces = nextBoard.getPieces();
 

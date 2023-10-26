@@ -1,6 +1,6 @@
 package src;
 
-import src.factory.GameFactory;
+import src.validators.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +12,13 @@ public class Game {
 
     private final List<Board> history;
 
+    private final Validator winnerValidator;
 
-    public Game(Color turn, List<Board> history){
+
+    public Game(Color turn, List<Board> history, Validator winnerValidator){
         this.turn = turn;
         this.history = history;
+        this.winnerValidator = winnerValidator;
     }
 
 
@@ -27,7 +30,7 @@ public class Game {
                 Board newBoard = board.movePiece(movement);
                 List<Board> newHistory = new ArrayList<>(history);
                 newHistory.add(newBoard);
-                return new GetResult<>(Optional.of(new Game(nextTurn(), newHistory)), false);
+                return new GetResult<>(Optional.of(new Game(nextTurn(), newHistory, winnerValidator)), false);
             }
         }
         return new GetResult<>(Optional.of(this), true);
@@ -47,5 +50,9 @@ public class Game {
 
     public Board getBoard(){
         return history.get(history.size() - 1);
+    }
+
+    public Validator getWinnerValidator(){
+        return this.winnerValidator;
     }
 }
