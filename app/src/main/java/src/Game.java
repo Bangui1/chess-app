@@ -23,7 +23,7 @@ public class Game {
         Board board = getBoard();
         if (board.getPieces().containsKey(movement.getOrigin())){
             Piece piece = board.getPieces().get(movement.getOrigin());
-            if (piece.getColor() == turn && piece.getValidator().isValid(board, movement)){
+            if (piece.getColor() == turn && piece.getValidator().isValid(history, movement)){
                 Board newBoard = board.movePiece(movement);
                 List<Board> newHistory = new ArrayList<>(history);
                 newHistory.add(newBoard);

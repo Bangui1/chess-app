@@ -2,6 +2,7 @@ package src.validators;
 
 import src.*;
 
+import java.util.List;
 import java.util.Map;
 
 public class HorizontalMoveValidator implements Validator {
@@ -13,8 +14,8 @@ public class HorizontalMoveValidator implements Validator {
     }
 
     @Override
-    public boolean isValid(Board board, Movement movement) {
-        Map<Coordinate, Piece> pieces = board.getPieces();
+    public boolean isValid(List<Board> board, Movement movement) {
+        Map<Coordinate, Piece> pieces = board.get(board.size()- 1).getPieces();
         if (movement.getOrigin().row() != movement.getDestination().row()) return false;
         if (right && movement.getOrigin().column() >= movement.getDestination().column()) return false;
         int direction = (right) ? 1 : -1;

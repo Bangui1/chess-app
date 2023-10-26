@@ -2,6 +2,7 @@ package src.validators;
 
 import src.*;
 
+import java.util.List;
 import java.util.Map;
 
 public class PlayerPieceValidator implements Validator{
@@ -12,8 +13,8 @@ public class PlayerPieceValidator implements Validator{
         this.color = color;
     }
     @Override
-    public boolean isValid(Board board, Movement movement) {
-        Map<Coordinate, Piece> pieces = board.getPieces();
+    public boolean isValid(List<Board> board, Movement movement) {
+        Map<Coordinate, Piece> pieces = board.get(board.size()- 1).getPieces();
         if (movement.getOrigin().column() == movement.getDestination().column() && movement.getOrigin().row() == movement.getDestination().row()) return false;
         if (!pieces.containsKey(movement.getOrigin())) return false;
         return pieces.get(movement.getOrigin()).getColor() == this.color;
