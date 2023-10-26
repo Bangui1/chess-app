@@ -15,13 +15,15 @@ public class HorizontalMoveValidator implements Validator {
 
     @Override
     public boolean isValid(List<Board> board, Movement movement) {
-        Map<Coordinate, Piece> pieces = board.get(board.size()- 1).getPieces();
+        Board currentBoard = board.get(board.size()- 1);
+        Map<Coordinate, Piece> pieces = currentBoard.getPieces();
         if (movement.getOrigin().row() != movement.getDestination().row()) return false;
         if (right && movement.getOrigin().column() >= movement.getDestination().column()) return false;
         int direction = (right) ? 1 : -1;
         Coordinate origin = new Coordinate(movement.getOrigin().column() + direction, movement.getOrigin().row());
         while (!origin.equals(movement.getDestination())){
             if (pieces.containsKey(origin)) return false;
+            if (origin.column() < 1 || origin.column() > currentBoard.getColumns()) return false;
             origin = new Coordinate(origin.column() + direction, origin.row());
         }
         return true;

@@ -15,13 +15,14 @@ public class VerticalMoveValidator implements Validator{
 
     @Override
     public boolean isValid(List<Board> board, Movement movement){
-        Map<Coordinate, Piece> pieces = board.get(board.size()- 1).getPieces();
-        if (movement.getOrigin().column() != movement.getDestination().column()) return false;
+        Board currentBoard = board.get(board.size()- 1);
+        Map<Coordinate, Piece> pieces = currentBoard.getPieces();
         if (forward && movement.getOrigin().row() >= movement.getDestination().row()) return false;
         int direction = (forward) ? 1 : -1;
         Coordinate origin = new Coordinate(movement.getOrigin().column(), movement.getOrigin().row() + direction);
         while (!origin.equals(movement.getDestination())){
             if (pieces.containsKey(origin)) return false;
+            if (origin.row() < 1 || origin.row() > currentBoard.getRows()) return false;
             origin = new Coordinate(origin.column(), origin.row() + direction);
         }
         return true;

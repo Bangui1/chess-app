@@ -51,5 +51,13 @@ public class Board {
         return null; // nunca va a llegar a esto
     }
 
+    public Coordinate getKingsCoordinate(Color color){
+        for(Map.Entry<Coordinate, Piece> entry : pieces.entrySet()){
+            Piece value = entry.getValue();
+            if (value.getColor() == color && value.getType() == PieceType.KING) return entry.getKey();
+        }
+        return null;
+    }
+
 
 }

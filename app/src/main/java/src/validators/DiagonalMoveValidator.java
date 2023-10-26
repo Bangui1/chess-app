@@ -15,7 +15,8 @@ public class DiagonalMoveValidator implements Validator{
 
     @Override
     public boolean isValid(List<Board> board, Movement movement){
-        Map<Coordinate, Piece> pieces = board.get(board.size()- 1).getPieces();
+        Board currentBoard = board.get(board.size()- 1);
+        Map<Coordinate, Piece> pieces = currentBoard.getPieces();
         if (movement.getOrigin().column() == movement.getDestination().column() || movement.getOrigin().row() == movement.getDestination().row()) return false;
         int directionX = (movement.getOrigin().column() < movement.getDestination().column()) ? 1 : -1;
         int directionY = (movement.getOrigin().row() < movement.getDestination().row()) ? 1 : -1;
@@ -23,6 +24,7 @@ public class DiagonalMoveValidator implements Validator{
         Coordinate origin = new Coordinate(movement.getOrigin().column() + directionX, movement.getOrigin().row() + directionY);
         while (!origin.equals(movement.getDestination())) {
             if (pieces.containsKey(origin)) return false;
+            if (origin.column() < 1 || origin.column() > currentBoard.getColumns() || origin.row() < 1 || origin.row() > currentBoard.getRows()) return false;
             origin = new Coordinate(origin.column() + directionX, origin.row() + directionY);
         }
         return true;
