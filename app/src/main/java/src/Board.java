@@ -41,4 +41,15 @@ public class Board {
         return new Board(rows, columns, new HashMap<>(copyPieces));
     }
 
+
+    public Coordinate getCoordinateByPieceId(int targetPieceId) {
+        for (Map.Entry<Coordinate, Piece> entry : pieces.entrySet()) {
+            if (entry.getValue().getId() == targetPieceId) {
+                return entry.getKey();
+            }
+        }
+        return null; // nunca va a llegar a esto
+    }
+
+
 }

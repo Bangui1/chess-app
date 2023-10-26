@@ -20,6 +20,12 @@ public class PieceFactory {
                         new DiagonalMoveValidator(true),
                         new EatingValidator(),
                         new LimitedMoveValidator(1)
+                ),
+                new CompositeAndValidator(
+                        new VerticalMoveValidator(true),
+                        new NotEatingValidator(),
+                        new LimitedMoveValidator(2),
+                        new PieceFirstMoveValidator()
                 )
         );
         return new Piece(id, Color.WHITE, PieceType.PAWN, validator);
@@ -38,6 +44,12 @@ public class PieceFactory {
                         new DiagonalMoveValidator(false),
                         new EatingValidator(),
                         new LimitedMoveValidator(1)
+                ),
+                new CompositeAndValidator(
+                        new VerticalMoveValidator(false),
+                        new NotEatingValidator(),
+                        new LimitedMoveValidator(2),
+                        new PieceFirstMoveValidator()
                 )
         );
             return new Piece(id, Color.BLACK, PieceType.PAWN, validator);
