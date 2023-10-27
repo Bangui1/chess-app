@@ -27,6 +27,9 @@ public class ChessGameEngine implements GameEngine {
             return new InvalidMove("Invalid move");
         } else {
             Game resultGame = result.getOptional().get();
+            if (!resultGame.getCheckValidator().isValid(resultGame.getHistory(), movement)){
+                return new InvalidMove("Checked");
+            }
             if (resultGame.getWinnerValidator().isValid(resultGame.getHistory(), movement)) return new GameOver(adapter.colorToPlayerColor(resultGame.nextTurn()));
             this.game = resultGame;
             return new NewGameState(adapter.piecesToChessPieces(resultGame.getBoard().getPieces()), adapter.colorToPlayerColor(resultGame.getTurn()));

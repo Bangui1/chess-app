@@ -2,10 +2,19 @@ package src.validators;
 
 import src.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class CheckMateValidator implements Validator{
+
+    private final Validator checkValidator;
+
+    public CheckMateValidator(Validator checkValidator) {
+        this.checkValidator = checkValidator;
+    }
+
+
     @Override
     public boolean isValid(List<Board> history, Movement movement) {
         Board previousBoard = history.get(history.size() - 2);
@@ -17,7 +26,13 @@ public class CheckMateValidator implements Validator{
             for (int column = 1; column <= currentBoard.getColumns(); column++){
                 Coordinate currentDestination = new Coordinate(column, row);
                 for(Map.Entry<Coordinate, Piece> piece : pieces.entrySet()){
-                    if (piece.getValue().getColor() == currentPlayer && piece.getValue().getValidator().isValid(history, new Movement(piece.getKey(), currentDestination))) return false;
+                    Movement move = new Movement(piece.getKey(), currentDestination);
+                    if (piece.getValue().getColor() == currentPlayer && piece.getValue().getValidator().isValid(history, move)) {
+                        Board newBoard = currentBoard.movePiece(move);
+                        List<Board> newHistory = new ArrayList<>(history);
+                        newHistory.add(newBoard);
+                        if (checkValidator.isValid(newHistory, move)) return false;
+                    }
                 }
             }
         }

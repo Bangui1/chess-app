@@ -28,8 +28,7 @@ public class PieceFactory {
                                 new LimitedMoveValidator(2),
                                 new PieceFirstMoveValidator()
                         )
-                ),
-                new CheckValidator()
+                )
         );
         return new Piece(id, Color.WHITE, PieceType.PAWN, validator);
 
@@ -55,8 +54,7 @@ public class PieceFactory {
                             new LimitedMoveValidator(2),
                             new PieceFirstMoveValidator()
                     )
-                ),
-                new CheckValidator()
+                )
         );
             return new Piece(id, Color.BLACK, PieceType.PAWN, validator);
 
@@ -70,8 +68,7 @@ public class PieceFactory {
                         new HorizontalMoveValidator(true),
                         new HorizontalMoveValidator(false)
                         ),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.WHITE, PieceType.ROOK, validator);
     }
@@ -84,8 +81,7 @@ public class PieceFactory {
                         new HorizontalMoveValidator(true),
                         new HorizontalMoveValidator(false)
                 ),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.BLACK, PieceType.ROOK, validator);
     }
@@ -93,8 +89,7 @@ public class PieceFactory {
     public Piece createWhiteKnight(int id){
         Validator validator = new CompositeAndValidator(
                 new LMoveValidator(),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.WHITE, PieceType.KNIGHT, validator);
     }
@@ -102,8 +97,7 @@ public class PieceFactory {
     public Piece createBlackKnight(int id){
         Validator validator = new CompositeAndValidator(
                 new LMoveValidator(),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.BLACK, PieceType.KNIGHT, validator);
     }
@@ -114,8 +108,7 @@ public class PieceFactory {
                         new DiagonalMoveValidator(true),
                         new DiagonalMoveValidator(false)
                 ),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.WHITE, PieceType.BISHOP, validator);
     }
@@ -126,8 +119,7 @@ public class PieceFactory {
                         new DiagonalMoveValidator(true),
                         new DiagonalMoveValidator(false)
                 ),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.BLACK, PieceType.BISHOP, validator);
     }
@@ -142,8 +134,7 @@ public class PieceFactory {
                         new DiagonalMoveValidator(true),
                         new DiagonalMoveValidator(false)
                 ),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.WHITE, PieceType.QUEEN, validator);
     }
@@ -158,8 +149,7 @@ public class PieceFactory {
                         new DiagonalMoveValidator(true),
                         new DiagonalMoveValidator(false)
                 ),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.BLACK, PieceType.QUEEN, validator);
     }
@@ -175,8 +165,7 @@ public class PieceFactory {
                     new DiagonalMoveValidator(false)
                 ),
                 new LimitedMoveValidator(1),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.WHITE, PieceType.KING, validator);
     }
@@ -192,10 +181,33 @@ public class PieceFactory {
                         new DiagonalMoveValidator(false)
                 ),
                 new LimitedMoveValidator(1),
-                new NoFriendlyFireValidator(),
-                new CheckValidator()
+                new NoFriendlyFireValidator()
         );
         return new Piece(id, Color.BLACK, PieceType.KING, validator);
+    }
+
+    public Piece createWhiteArchbishop(int id){
+        Validator validator = new CompositeAndValidator(
+                new CompositeOrValidator(
+                        new DiagonalMoveValidator(true),
+                        new DiagonalMoveValidator(false),
+                        new LMoveValidator()
+                ),
+                new NoFriendlyFireValidator()
+        );
+        return new Piece(id, Color.WHITE, PieceType.ARCHBISHOP, validator);
+    }
+
+    public Piece createBlackArchbishop(int id){
+        Validator validator = new CompositeAndValidator(
+                new CompositeOrValidator(
+                        new DiagonalMoveValidator(true),
+                        new DiagonalMoveValidator(false),
+                        new LMoveValidator()
+                ),
+                new NoFriendlyFireValidator()
+        );
+        return new Piece(id, Color.BLACK, PieceType.ARCHBISHOP, validator);
     }
 
 

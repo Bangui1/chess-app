@@ -14,11 +14,14 @@ public class Game {
 
     private final Validator winnerValidator;
 
+    private final Validator checkValidator;
 
-    public Game(Color turn, List<Board> history, Validator winnerValidator){
+
+    public Game(Color turn, List<Board> history, Validator winnerValidator, Validator checkValidator){
         this.turn = turn;
         this.history = history;
         this.winnerValidator = winnerValidator;
+        this.checkValidator = checkValidator;
     }
 
 
@@ -30,7 +33,7 @@ public class Game {
                 Board newBoard = board.movePiece(movement);
                 List<Board> newHistory = new ArrayList<>(history);
                 newHistory.add(newBoard);
-                return new GetResult<>(Optional.of(new Game(nextTurn(), newHistory, winnerValidator)), false);
+                return new GetResult<>(Optional.of(new Game(nextTurn(), newHistory, winnerValidator, checkValidator)), false);
             }
         }
         return new GetResult<>(Optional.of(this), true);
@@ -54,5 +57,9 @@ public class Game {
 
     public Validator getWinnerValidator(){
         return this.winnerValidator;
+    }
+
+    public Validator getCheckValidator(){
+        return this.checkValidator;
     }
 }
