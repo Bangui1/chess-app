@@ -10,7 +10,8 @@ import javafx.application.Application
 import javafx.application.Application.launch
 import javafx.scene.Scene
 import javafx.stage.Stage
-import src.ChessGameEngine
+import src.checkers.CheckersGameEngine
+import src.chess.ChessGameEngine
 
 
 fun main() {
@@ -18,7 +19,7 @@ fun main() {
 }
 
 class ChessGameApplication : Application() {
-    private val gameEngine = ChessGameEngine()
+    private val gameEngine = CheckersGameEngine()
     private val imageResolver = CachedImageResolver(DefaultImageResolver())
 
     companion object {
