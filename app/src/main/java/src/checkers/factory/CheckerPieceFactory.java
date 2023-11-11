@@ -7,7 +7,7 @@ import src.checkers.validators.NotBlockedValidator;
 import src.chess.validators.InboundsValidator;
 import src.common.Color;
 import src.common.Piece;
-import src.common.PieceType;
+import src.chess.PieceType;
 import src.common.validators.CompositeAndValidator;
 import src.common.validators.CompositeOrValidator;
 import src.common.validators.LimitedMoveValidator;

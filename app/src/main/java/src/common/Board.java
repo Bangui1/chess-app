@@ -1,5 +1,7 @@
 package src.common;
 
+import src.chess.PieceType;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,4 +68,9 @@ public class Board {
     }
 
 
+    public Board addPiece(Coordinate coordinate, Piece piece) {
+        Map<Coordinate, Piece> copyPieces = new HashMap<>(pieces);
+        copyPieces.put(coordinate, piece);
+        return new Board(rows, columns, new HashMap<>(copyPieces));
+    }
 }
