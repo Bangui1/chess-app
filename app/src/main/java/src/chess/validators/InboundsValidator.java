@@ -11,9 +11,13 @@ public class InboundsValidator implements Validator {
     @Override
     public boolean isValid(List<Board> history, Movement movement){
         Board board = history.get(history.size() - 1);
-        return movement.getOrigin().column() >= 0 && movement.getOrigin().column() < board.getRows() &&
-                movement.getOrigin().row() >= 0 && movement.getOrigin().row() < board.getColumns() &&
-                movement.getDestination().column() >= 0 && movement.getDestination().column() < board.getRows() &&
-                movement.getDestination().row() >= 0 && movement.getDestination().row() < board.getColumns();
+        int originColumn = movement.getOrigin().column();
+        int originRow = movement.getOrigin().row();
+        int destinationColumn = movement.getDestination().column();
+        int destinationRow = movement.getDestination().row();
+        return originColumn > 0 && originColumn <= board.getColumns() &&
+                originRow > 0 && originRow <= board.getRows() &&
+                destinationColumn > 0 && destinationColumn <= board.getColumns() &&
+                destinationRow > 0 && destinationRow <= board.getRows();
     }
 }

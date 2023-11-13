@@ -17,6 +17,6 @@ public class DefaultChessMover implements Mover {
         Board newBoard = board.movePiece(movement);
         List<Board> newHistory = new ArrayList<>(boardGame.getHistory());
         newHistory.add(newBoard);
-        return new GetResult<>(Optional.of(new BoardGame(boardGame.nextTurn(), newHistory, boardGame.getWinningValidator(), boardGame.getMover())), false);
+        return new GetResult<>(Optional.of(new BoardGame(boardGame.nextTurn(), boardGame.getTurn(), newHistory, boardGame.getWinningValidator(), boardGame.getMover())), false);
     }
 }

@@ -31,7 +31,7 @@ public class PromotionMover implements Mover {
         Board newBoard2 = piece.getColor() == Color.WHITE ? newBoard.addPiece(movement.getDestination(), pieceFactory.createWhiteQueen(piece.getId())) : newBoard.addPiece(movement.getDestination(), pieceFactory.createBlackQueen(piece.getId()));
         List<Board> newHistory = new ArrayList<>(boardGame.getHistory());
         newHistory.add(newBoard2);
-        return new GetResult<>(Optional.of(new BoardGame(boardGame.nextTurn(), newHistory, boardGame.getWinningValidator(), boardGame.getMover())), false);
+        return new GetResult<>(Optional.of(new BoardGame(boardGame.nextTurn(), boardGame.getTurn(), newHistory, boardGame.getWinningValidator(), boardGame.getMover())), false);
     }
 
     private boolean checkIfPawnCanPromote(Board board, Movement movement){

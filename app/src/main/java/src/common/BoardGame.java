@@ -9,13 +9,15 @@ import java.util.Optional;
 public class BoardGame {
 
     private final Color turn;
+    private final Color previousTurn;
     private final List<Board> history;
     private final Validator winningValidator;
     private final Mover mover;
 
 
-    public BoardGame(Color turn, List<Board> history, Validator winningValidator, Mover mover) {
+    public BoardGame(Color turn, Color previousTurn, List<Board> history, Validator winningValidator, Mover mover) {
         this.turn = turn;
+        this.previousTurn = previousTurn;
         this.history = history;
         this.winningValidator = winningValidator;
         this.mover = mover;
@@ -58,5 +60,9 @@ public class BoardGame {
 
     private boolean checkTurn(Coordinate coordinate){
         return getCurrentBoard().getPieces().get(coordinate).getColor()  == turn;
+    }
+
+    public Color getPreviousTurn(){
+        return previousTurn;
     }
 }

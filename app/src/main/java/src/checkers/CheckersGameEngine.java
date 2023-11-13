@@ -13,8 +13,6 @@ public class CheckersGameEngine implements GameEngine {
     private final Adapter adapter = new Adapter();
 
     public CheckersGameEngine() {
-        CheckerGameFactory factory = new CheckerGameFactory();
-        this.checkersGame = factory.createGame();
     }
 
     @NotNull

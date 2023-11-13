@@ -54,4 +54,48 @@ public class CheckerPieceFactory {
         );
         return new Piece(id, Color.BLACK, PieceType.PAWN, validator);
     }
+
+    public Piece createWhiteKing(int id){
+        Validator validator = new CompositeAndValidator(
+                new CompositeOrValidator(
+                        new CompositeAndValidator(
+                                new DiagonalMoveValidator(true),
+                                new DiagonalMoveValidator(false),
+                                new LimitedMoveValidator(1)
+                        ),
+                        new CompositeAndValidator(
+                                new DiagonalMoveValidator(true),
+                                new DiagonalMoveValidator(false),
+                                new LimitedMoveValidator(2),
+                                new NoFriendlyFireValidator(),
+                                new HasEatenValidator()
+                        )
+                ),
+                new NotBlockedValidator(),
+                new InboundsValidator()
+        );
+        return new Piece(id, Color.WHITE, PieceType.KING, validator);
+    }
+
+    public Piece createBlackKing(int id){
+        Validator validator = new CompositeAndValidator(
+                new CompositeOrValidator(
+                        new CompositeAndValidator(
+                                new DiagonalMoveValidator(true),
+                                new DiagonalMoveValidator(false),
+                                new LimitedMoveValidator(1)
+                        ),
+                        new CompositeAndValidator(
+                                new DiagonalMoveValidator(true),
+                                new DiagonalMoveValidator(false),
+                                new LimitedMoveValidator(2),
+                                new NoFriendlyFireValidator(),
+                                new HasEatenValidator()
+                        )
+                ),
+                new NotBlockedValidator(),
+                new InboundsValidator()
+        );
+        return new Piece(id, Color.BLACK, PieceType.KING, validator);
+    }
 }

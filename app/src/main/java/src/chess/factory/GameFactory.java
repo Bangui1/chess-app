@@ -16,10 +16,10 @@ public class GameFactory {
     private static final BoardFactory boardFactory = new BoardFactory();
 
     public BoardGame createGame() {
-        return new BoardGame(Color.WHITE, List.of(boardFactory.createClassicBoard()), new CheckMateValidator(new CheckValidator()), new MoverWithValidator(new CheckValidator(), new CompositeOrMover(new PromotionMover(), new DefaultChessMover())));
+        return new BoardGame(Color.WHITE, Color.BLACK, List.of(boardFactory.createClassicBoard()), new CheckMateValidator(new CheckValidator()), new MoverWithValidator(new CheckValidator(), new CompositeOrMover(new PromotionMover(), new DefaultChessMover())));
     }
 
     public BoardGame createFirstToEatGame() {
-        return new BoardGame(Color.WHITE, List.of(boardFactory.createFirstToEatBoard()), new FirstToEatValidator(), new CompositeOrMover(new DefaultChessMover()));
+        return new BoardGame(Color.WHITE, Color.BLACK, List.of(boardFactory.createFirstToEatBoard()), new FirstToEatValidator(), new CompositeOrMover(new DefaultChessMover()));
     }
 }

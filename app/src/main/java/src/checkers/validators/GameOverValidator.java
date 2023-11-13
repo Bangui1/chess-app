@@ -30,7 +30,7 @@ public class GameOverValidator implements Validator {
     }
 
     private Color getCurrentPlayer(List<Board> history, Coordinate origin) {
-        Board previousBoard = history.get(history.size() - 2);
+        Board previousBoard = history.get(history.size() - 2    );
         Map<Coordinate, Piece> pieces = previousBoard.getPieces();
         return pieces.get(origin).getColor();
     }

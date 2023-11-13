@@ -2,6 +2,7 @@ package src.common;
 
 import edu.austral.dissis.chess.gui.*;
 import org.jetbrains.annotations.NotNull;
+import src.checkers.factory.CheckerGameFactory;
 import src.chess.factory.GameFactory;
 import src.common.adapters.Adapter;
 
@@ -11,7 +12,7 @@ public class GameEngineImpl implements GameEngine {
     private final Adapter adapter = new Adapter();
 
     public GameEngineImpl(){
-        GameFactory factory= new GameFactory();
+        CheckerGameFactory factory= new CheckerGameFactory();
         this.boardGame = factory.createGame();
     }
 
