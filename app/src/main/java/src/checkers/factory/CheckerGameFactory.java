@@ -26,7 +26,7 @@ public class CheckerGameFactory {
                 new SequenceMover(
                         new MovingSamePieceMover(),
                         new DefaultCheckersMover(),
-
+                        new PromotionMover(),
                         new CanEatAgainMover()
                 )
                 );

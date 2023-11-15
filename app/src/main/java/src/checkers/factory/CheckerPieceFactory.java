@@ -59,13 +59,17 @@ public class CheckerPieceFactory {
         Validator validator = new CompositeAndValidator(
                 new CompositeOrValidator(
                         new CompositeAndValidator(
+                                new CompositeOrValidator(
                                 new DiagonalMoveValidator(true),
-                                new DiagonalMoveValidator(false),
+                                          new DiagonalMoveValidator(false)
+                                ),
                                 new LimitedMoveValidator(1)
                         ),
                         new CompositeAndValidator(
-                                new DiagonalMoveValidator(true),
-                                new DiagonalMoveValidator(false),
+                                new CompositeOrValidator(
+                                        new DiagonalMoveValidator(true),
+                                        new DiagonalMoveValidator(false)
+                                ),
                                 new LimitedMoveValidator(2),
                                 new NoFriendlyFireValidator(),
                                 new HasEatenValidator()
@@ -76,18 +80,22 @@ public class CheckerPieceFactory {
         );
         return new Piece(id, Color.WHITE, PieceType.KING, validator);
     }
-
+    
     public Piece createBlackKing(int id){
         Validator validator = new CompositeAndValidator(
                 new CompositeOrValidator(
                         new CompositeAndValidator(
-                                new DiagonalMoveValidator(true),
-                                new DiagonalMoveValidator(false),
+                                new CompositeOrValidator(
+                                        new DiagonalMoveValidator(true),
+                                        new DiagonalMoveValidator(false)
+                                ),
                                 new LimitedMoveValidator(1)
                         ),
                         new CompositeAndValidator(
-                                new DiagonalMoveValidator(true),
-                                new DiagonalMoveValidator(false),
+                                new CompositeOrValidator(
+                                        new DiagonalMoveValidator(true),
+                                        new DiagonalMoveValidator(false)
+                                ),
                                 new LimitedMoveValidator(2),
                                 new NoFriendlyFireValidator(),
                                 new HasEatenValidator()
