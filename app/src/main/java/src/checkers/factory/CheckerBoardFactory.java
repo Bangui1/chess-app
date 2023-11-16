@@ -27,4 +27,23 @@ public class CheckerBoardFactory {
 
         return new Board(8, 8, pieces);
     }
+
+    public Board createCustomCheckersBoard(){
+        int id = 1;
+
+        Map<Coordinate, Piece> pieces = new HashMap<>();
+        int rows = 8;
+        int columns = 10;
+
+        for (int i = 1; i <= columns; i+= 2){
+            pieces.put(new Coordinate(i, 1), pieceFactory.createWhiteKing(id++));
+            pieces.put(new Coordinate(i + 1, 2), pieceFactory.createWhiteKing(id++));
+            pieces.put(new Coordinate(i, 3), pieceFactory.createWhiteKing(id++));
+            pieces.put(new Coordinate(i + 1, 6), pieceFactory.createBlackKing(id++));
+            pieces.put(new Coordinate(i, 7), pieceFactory.createBlackKing(id++));
+            pieces.put(new Coordinate(i + 1, 8), pieceFactory.createBlackKing(id++));
+        }
+
+        return new Board(rows, columns, pieces);
+    }
 }
