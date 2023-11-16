@@ -1,6 +1,6 @@
 package src.chess.factory;
 
-import src.chess.PieceType;
+import src.common.PieceType;
 import src.chess.validators.*;
 import src.common.Color;
 import src.common.Piece;

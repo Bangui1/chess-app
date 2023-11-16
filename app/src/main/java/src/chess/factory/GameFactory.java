@@ -20,6 +20,6 @@ public class GameFactory {
     }
 
     public BoardGame createFirstToEatGame() {
-        return new BoardGame(Color.WHITE, Color.BLACK, List.of(boardFactory.createFirstToEatBoard()), new FirstToEatValidator(), new CompositeOrMover(new DefaultChessMover()));
+        return new BoardGame(Color.WHITE, Color.BLACK, List.of(boardFactory.createFirstToEatBoard()), new FirstToEatValidator(), new MoverWithValidator(new CheckValidator(), new CompositeOrMover(new PromotionMover(), new DefaultChessMover())));
     }
 }

@@ -1,7 +1,7 @@
 package src.checkers.mover;
 
 import src.checkers.factory.CheckerPieceFactory;
-import src.chess.PieceType;
+import src.common.PieceType;
 import src.common.*;
 import src.common.mover.Mover;
 

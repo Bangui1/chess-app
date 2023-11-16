@@ -1,7 +1,5 @@
 package src.common;
 
-import src.chess.PieceType;
-
 import java.util.HashMap;
 import java.util.Map;
 

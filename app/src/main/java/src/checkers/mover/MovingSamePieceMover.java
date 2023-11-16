@@ -1,7 +1,9 @@
 package src.checkers.mover;
 
+import src.checkers.validators.HasEatenValidator;
 import src.common.*;
 import src.common.mover.Mover;
+import src.common.validators.Validator;
 
 import java.util.List;
 import java.util.Map;
@@ -9,6 +11,8 @@ import java.util.Optional;
 
 public class MovingSamePieceMover implements Mover {
 
+
+    private final static Validator hasEatenValidator = new HasEatenValidator();
 
 
     private boolean isMovingSamePiece(List<Board> history, Movement movement){
@@ -18,7 +22,7 @@ public class MovingSamePieceMover implements Mover {
         Map<Coordinate, Piece> previousPieces = previousBoard.getPieces();
         for (Map.Entry<Coordinate,Piece> piece : previousPieces.entrySet()){
             if (piece.getValue().getId() == pieceId && !piece.getKey().equals(movement.getOrigin())){
-                return true;
+                return hasEatenValidator.isValid(history, movement);
             }
         }
         return false;

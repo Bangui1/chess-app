@@ -1,6 +1,5 @@
 package src.common;
 
-import src.chess.PieceType;
 import src.common.validators.Validator;
 
 public class Piece {

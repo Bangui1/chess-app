@@ -34,7 +34,5 @@ class ChessGameApplication : Application() {
         primaryStage.title = GameTitle
 
         primaryStage.scene = Scene(root)
-
-        primaryStage.show()
     }
 }

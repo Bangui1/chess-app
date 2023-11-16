@@ -6,6 +6,7 @@ import src.common.Movement;
 import src.common.Piece;
 import src.common.validators.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,12 +25,20 @@ public class CanEatAgainValidator implements Validator {
         Map<Coordinate, Piece> pieces = currentBoard.getPieces();
         Coordinate pieceOrigin = movement.getDestination();
         Piece piece = pieces.get(pieceOrigin);
-        for (int row = 1; row <= currentBoard.getRows(); row++){
-            for (int column = 1; column <= currentBoard.getColumns(); column++){
-                Movement eatMovement = new Movement(pieceOrigin, new Coordinate(column, row));
+        List<Coordinate> movesToEat = movesToEat(pieceOrigin);
+        for (Coordinate eatCoordinate : movesToEat){
+                Movement eatMovement = new Movement(pieceOrigin, eatCoordinate);
                 if (eatValidator.isValid(history, eatMovement) && piece.getValidator().isValid(history, eatMovement)) return true;
-            }
         }
         return false;
+    }
+
+    private List<Coordinate> movesToEat(Coordinate current){
+        List<Coordinate> possibleMoves = new ArrayList<>();
+        possibleMoves.add(new Coordinate(current.column() + 2, current.row() + 2));
+        possibleMoves.add(new Coordinate(current.column() - 2, current.row() + 2));
+        possibleMoves.add(new Coordinate(current.column() + 2, current.row() - 2));
+        possibleMoves.add(new Coordinate(current.column() - 2, current.row() - 2));
+        return possibleMoves;
     }
 }

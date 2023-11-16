@@ -1,6 +1,6 @@
 package src.chess.mover;
 
-import src.chess.PieceType;
+import src.common.PieceType;
 import src.chess.factory.PieceFactory;
 import src.common.*;
 import src.common.mover.Mover;

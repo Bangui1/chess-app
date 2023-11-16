@@ -1,4 +1,4 @@
-package src.chess;
+package src.common;
 
 public enum PieceType {
     PAWN,

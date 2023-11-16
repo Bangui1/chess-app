@@ -12,7 +12,7 @@ public class GameEngineImpl implements GameEngine {
     private final Adapter adapter = new Adapter();
 
     public GameEngineImpl(){
-        CheckerGameFactory factory= new CheckerGameFactory();
+        GameFactory factory = new GameFactory();
         this.boardGame = factory.createGame();
     }
 

@@ -11,15 +11,10 @@ import javafx.stage.Stage
 import src.lan.client.GameClient
 
 fun main() {
-    val numberOfInstances = 3 // Change this to the desired number of instances
-
-    repeat(numberOfInstances) {
-        launch(App2::class.java)
-    }
+    launch(App3::class.java)
 }
 
-
-class App2  :  Application() {
+class App3  :  Application() {
     private val imageResolver = CachedImageResolver(DefaultImageResolver())
     private val root = GameView(imageResolver)
     private val builder = NettyClientBuilder.createDefault()

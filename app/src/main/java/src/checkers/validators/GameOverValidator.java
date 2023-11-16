@@ -15,6 +15,10 @@ public class GameOverValidator implements Validator {
         Board currentBoard = history.get(history.size() - 1);
         Map<Coordinate, Piece> pieces = currentBoard.getPieces();
 
+        if (checkEmptyPieces(pieces, currentPlayer)){
+            return true;
+        }
+
         for(int row = 1; row < currentBoard.getRows(); row++){
             for(int column = 1; column < currentBoard.getColumns(); column++){
                 Coordinate currentDestination = new Coordinate(column, row);
@@ -30,8 +34,18 @@ public class GameOverValidator implements Validator {
     }
 
     private Color getCurrentPlayer(List<Board> history, Coordinate origin) {
-        Board previousBoard = history.get(history.size() - 2    );
+        Board previousBoard = history.get(history.size() - 2);
         Map<Coordinate, Piece> pieces = previousBoard.getPieces();
         return pieces.get(origin).getColor();
+    }
+
+    private boolean checkEmptyPieces(Map<Coordinate,Piece> pieces, Color player){
+        Color color = player == Color.WHITE ? Color.BLACK : Color.WHITE;
+        for (Map.Entry<Coordinate,Piece> piece : pieces.entrySet()){
+            if (piece.getValue().getColor() == color){
+                return false;
+            }
+        }
+        return true;
     }
 }
